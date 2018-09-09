@@ -19,7 +19,7 @@ class DonorSignUpForm(UserCreationForm):
         user.user_type = 1
         user.save()
         donor = Donor.objects.create(user=user)
-        donor.address
+        donor.address()
         donor.save()
         return user
 
@@ -71,6 +71,6 @@ class LocalBodySignUpForm(UserCreationForm):
         user = super().save(commit=False)
         user.user_type = 5
         user.save()
-        local_body = Recipient.objects.create(user=user)
+        local_body = LocalBodies.objects.create(user=user)
         local_body.save()
         return user
