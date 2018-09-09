@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-      <h2>Sign up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign up</button>
-  </form>
+{% block content %}
 
-</body>
-</html>
+    <a class="btn btn-primary" href="{% url 'donor_signup' %}">Donors</a>
+    <a class="btn btn-success" href="{% url 'recipient_signup' %}">Recipients</a>
+    <a class="btn btn-info" href="{% url 'hospital_signup' %}">Hospitals</a>
+    <a class="btn btn-warning" href="{% url 'blood_bank_signup' %}">Blood Banks</a>
+    <a class="btn btn-danger" href="{% url 'local_bodies_signup' %}">Local Bodies</a>
+
+{% endblock %}

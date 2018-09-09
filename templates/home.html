@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-	    {% if user.is_authenticated %}
-                 <p class="display-4">Hello, {{ user.username }}</p>
-	    {% else %}
-                 <a class="lead" href="{% url 'login' %}">Log in</a>
-	    {% endif %}
+{% block content %}
 
-</body>
-</html>
+    <h1>Welcome, please log in</h1>
+     <a class="lead" href="{% url 'login' %}">Log in</a>
+
+    <a class="lead" href="{% url 'signup' %}">Sign Up</a>
+
+{% endblock %}
