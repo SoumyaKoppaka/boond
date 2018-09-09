@@ -1,8 +1,6 @@
 from django.urls import include, path
 from .views import donors, all_roles
 
-app_name = 'roles'
-
 urlpatterns = [
 
     path('', all_roles.home, name='home'),
