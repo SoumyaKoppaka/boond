@@ -1,7 +1,5 @@
 from django.urls import include, path
-from .views import donors, all_roles
-
-app_name = 'roles'
+from .views import donors, all_roles,local_bodies
 
 urlpatterns = [
 
@@ -9,6 +7,7 @@ urlpatterns = [
 
     path('donor/', include(([
                                 path('', donors.DonorHomeView.as_view(), name='donor_home'),
+
                             ], 'roles'), namespace='donor')),
 
     path('recipient/', include(([
@@ -25,6 +24,8 @@ urlpatterns = [
 
     path('localBodies/', include(([
                                       path('', donors.DonorHomeView.as_view(), name='local_bodies_home'),
+                                      path('uploadEvents', local_bodies.uploadEvent, name='uploadEvents'),
+
                                   ], 'roles'), namespace='local_bodies')),
 
 ]

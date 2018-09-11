@@ -13,4 +13,6 @@ urlpatterns = [
     path('accounts/signup/hospital/', hospitals.HospitalSignUpView.as_view(), name='hospital_signup'),
     path('accounts/signup/bloodBank/', blood_banks.BloodBankSignUpView.as_view(), name='blood_bank_signup'),
     path('accounts/signup/localBody/', local_bodies.LocalBodySignUpView.as_view(), name='local_bodies_signup'),
+    path('viewEvents', local_bodies.viewEvent, name='viewEvents'),
+
 ]

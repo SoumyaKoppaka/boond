@@ -13,7 +13,7 @@ class User(AbstractUser):
         (6, 'Admin'),
     )
 
-    user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES)
+    user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES, default=5)
     name = models.CharField(max_length=50)
 
 
@@ -55,3 +55,18 @@ class LocalBodies(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class BloodDonationEvent(models.Model):
+    user = models.ForeignKey(User, default=5, on_delete=models.CASCADE)
+    name = models.CharField(max_length=250)
+    organizer = models.CharField(max_length=50)
+    date=models.DateTimeField()
+    location=models.CharField(max_length=100)
+    description = models.CharField(max_length=500)
+    #time=models.TimeField()
+    poster = models.FileField()
+    status=models.IntegerField(default=0)
+
+
+    def __str__(self):
+        return self.organizer + ' - ' + self.location

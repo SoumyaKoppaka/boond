@@ -2,10 +2,31 @@
 
 {% block content %}
 
-    <h1>Welcome to our site</h1>
+    <h1>Welcome to our site
+        {% if user.user_type == 1 %}
+            , Donor
+        {% elif user.user_type == 2 %}
+            , Recipient
+        {% elif user.user_type == 3  %}
+            , Hospital
+        {% elif user.user_type == 4  %}
+            , Blood bank
+        {% elif user.user_type == 5  %}
+            , Local Body
+        {% endif %}
+
+
+    </h1>
+
+        {% if user.user_type == 5 %}
+            <br><a class="btn btn-primary" href="{% url 'local_bodies:uploadEvents' %}">Upload Event</a><br><br>
+        {% endif %}
+    {% if not user.is_authenticated %}
      <a class="btn btn-primary" href="{% url 'login' %}">Log in</a>
-
+    <br><br>
      <a class="btn btn-primary" href="{% url 'signup' %}">Sign Up</a>
-
+    <br><br>
+    {% endif %}
+    <a class="btn btn-primary" href="{% url 'viewEvents' %}" >View Events</a>
 
 {% endblock %}
