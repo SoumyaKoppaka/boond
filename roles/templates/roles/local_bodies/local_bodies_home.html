@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <br>
+    <h1 style="color: #FFFFFF;">Welcome, you are a local body</h1>
+
+    <a class="btn btn-warning" href="{% url 'local_bodies:upload_events' %}">Upload Events</a>
+
+    <br>
+
+{% endblock %}

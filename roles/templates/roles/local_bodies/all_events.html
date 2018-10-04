@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <br>
+    <h1 style="color: #FFFFFF">Blood Donation Events</h1>
+    <div class="card-columns">
+    {% if all_products %}
+        {% for product in all_products %}
+            <div class="card" style="font-family: Lato, sans-serif">
+                <img class="card-img-top" src="{% static 'images/bloodbank.jpg' %}">
+                <div class="card-body">
+                <h4 class="card-title">{{ product.name }}</h4>
+                <p class="card-text">Location: {{ product.location }}</p>
+                <p class="card-text">Date: {{ product.date }}</p>
+                <p class="card-text">{{ product.description }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No events available.</p>
+    {% endif %}
+    </div>
+
+
+
+{% endblock %}
+

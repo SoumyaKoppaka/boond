@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Welcome, please log in</h1>
+     <a class="lead" href="{% url 'login' %}">Log in</a>
+
+    <a class="lead" href="{% url 'signup' %}">Sign Up</a>
+
+{% endblock %}
