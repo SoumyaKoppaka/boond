@@ -11,8 +11,31 @@ def send_event_message():
             recipients.append(user.email)
     send_mail(
         subject='Blood Donation Event',
-        message=
-        'A new Blood Donation Event is being organized.\nPlease visit the site to view it.',
+        message='A new Blood Donation Event is being organized.\nPlease visit the site to view it.',
         from_email=settings.EMAIL_HOST_USER,
         recipient_list=recipients,
+    )
+
+
+def send_confirmation_recipient_message(some_user_parameter):
+    # TODO Query
+    user = User.objects.get(some_user_parameter)
+    send_mail(
+        subject='Blood Reservation Confirmation',
+        message='Blood has been reserved. Please collect it within 2 hours.',
+        from_email=settings.EMAIL_HOST_USER,
+        recipient_list=user.email,
+    )
+
+
+def send_update_reminder():
+    recipients = []
+    for user in User.objects.all():
+        if user.user_type == 3 | user.user_type == 4:
+            recipients.append(user.email)
+    send_mail(
+        subject='Blood Status update',
+        message='Gentle reminder for periodic update of blood status.',
+        from_email=settings.EMAIL_HOST_USER,
+        recipient_list=recipients
     )
