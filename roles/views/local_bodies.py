@@ -29,7 +29,6 @@ class LocalBodyHomeView(generic.TemplateView):
 
 def view_event(request):
     all_products = BloodDonationEvent.objects.all()
-    print(all_products)
     return render(request, 'roles/local_bodies/all_events.html', {'all_products': all_products})
 
 
