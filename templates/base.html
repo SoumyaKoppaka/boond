@@ -31,8 +31,11 @@
     {% block content %}
     {% endblock %}
     <br>
-    <br>
+
+    <a class="btn btn-warning" href="{% url 'view_events' %}">View Events</a>
+
     {% if user.is_authenticated %}
+        <br><br>
         <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
     {% endif %}
 
