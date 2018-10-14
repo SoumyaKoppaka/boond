@@ -21,7 +21,6 @@ class Donor(models.Model):
     first_name = models.CharField(max_length=40, default='')
     last_name = models.CharField(max_length=40, default='')
     location = models.CharField(max_length=40, default='')
-    email_address = models.EmailField(default='')
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
     def __str__(self):
@@ -32,7 +31,6 @@ class Recipient(models.Model):
     first_name = models.CharField(max_length=40, default='')
     last_name = models.CharField(max_length=40, default='')
     location = models.CharField(max_length=40, default='')
-    email_address = models.EmailField(default='')
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
     def __str__(self):
@@ -42,7 +40,6 @@ class Recipient(models.Model):
 class BloodBank(models.Model):
     name = models.CharField(max_length=40, default='')
     location = models.CharField(max_length=40, default='')
-    email_address = models.EmailField(default='')
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
     def __str__(self):
@@ -52,7 +49,6 @@ class BloodBank(models.Model):
 class Hospital(models.Model):
     name = models.CharField(max_length=40, default='')
     location = models.CharField(max_length=40, default='')
-    email_address = models.EmailField(default='')
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
     def __str__(self):
@@ -62,7 +58,6 @@ class Hospital(models.Model):
 class LocalBodies(models.Model):
     name = models.CharField(max_length=40, default='')
     location = models.CharField(max_length=40, default='')
-    email_address = models.EmailField(default='')
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
     def __str__(self):
