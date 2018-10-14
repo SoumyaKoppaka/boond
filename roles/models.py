@@ -1,7 +1,5 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 
 
 # Create your models here.
@@ -69,30 +67,6 @@ class LocalBodies(models.Model):
 
     def __str__(self):
         return self.user.username
-
-
-"""
-@receiver(post_save, sender=User)
-def create_user_type_object(sender, instance, created, **kwargs):
-    if created:
-        obj = User(instance)
-        if obj.user_type == 1:
-            Donor.objects.create(user=obj)
-        elif obj.user_type == 2:
-            Recipient.objects.create(user=obj)
-        elif obj.user_type == 3:
-            BloodBank.objects.create(user=obj)
-        elif obj.user_type == 4:
-            Hospital.objects.create(user=obj)
-        elif obj.user_type == 5:
-            BloodBank.objects.create(user=obj)
-
-@receiver(post_save, sender=User)
-def save_user_type_object(sender, instance, **kwargs):
-    obj = User(instance)
-    # if(obj.user_type == 1):
-    
-"""
 
 
 class BloodDonationEvent(models.Model):
