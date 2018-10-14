@@ -20,7 +20,10 @@ class User(AbstractUser):
 
 
 class Donor(models.Model):
-    address = models.CharField(max_length=300)
+    first_name = models.CharField(max_length=40, default='')
+    last_name = models.CharField(max_length=40, default='')
+    location = models.CharField(max_length=40, default='')
+    email_address = models.EmailField(default='')
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
     def __str__(self):
@@ -28,7 +31,10 @@ class Donor(models.Model):
 
 
 class Recipient(models.Model):
-    address = models.CharField(max_length=300)
+    first_name = models.CharField(max_length=40, default='')
+    last_name = models.CharField(max_length=40, default='')
+    location = models.CharField(max_length=40, default='')
+    email_address = models.EmailField(default='')
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
     def __str__(self):
@@ -36,7 +42,9 @@ class Recipient(models.Model):
 
 
 class BloodBank(models.Model):
-    address = models.CharField(max_length=300)
+    name = models.CharField(max_length=40, default='')
+    location = models.CharField(max_length=40, default='')
+    email_address = models.EmailField(default='')
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
     def __str__(self):
@@ -44,7 +52,9 @@ class BloodBank(models.Model):
 
 
 class Hospital(models.Model):
-    address = models.CharField(max_length=300)
+    name = models.CharField(max_length=40, default='')
+    location = models.CharField(max_length=40, default='')
+    email_address = models.EmailField(default='')
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
     def __str__(self):
@@ -52,13 +62,16 @@ class Hospital(models.Model):
 
 
 class LocalBodies(models.Model):
-    address = models.CharField(max_length=300)
+    name = models.CharField(max_length=40, default='')
+    location = models.CharField(max_length=40, default='')
+    email_address = models.EmailField(default='')
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
     def __str__(self):
         return self.user.username
 
 
+"""
 @receiver(post_save, sender=User)
 def create_user_type_object(sender, instance, created, **kwargs):
     if created:
@@ -73,6 +86,13 @@ def create_user_type_object(sender, instance, created, **kwargs):
             Hospital.objects.create(user=obj)
         elif obj.user_type == 5:
             BloodBank.objects.create(user=obj)
+
+@receiver(post_save, sender=User)
+def save_user_type_object(sender, instance, **kwargs):
+    obj = User(instance)
+    # if(obj.user_type == 1):
+    
+"""
 
 
 class BloodDonationEvent(models.Model):
