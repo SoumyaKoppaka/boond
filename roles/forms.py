@@ -172,6 +172,12 @@ class LocalBodySignUpForm(UserCreationForm):
 
 
 class EventForm(forms.ModelForm):
+
+    date = forms.DateField(
+        widget=forms.DateInput,
+        required=True
+    )
+
     class Meta:
         model = BloodDonationEvent
         fields = ['name', 'organizer', 'location', 'date', 'description', 'poster']
