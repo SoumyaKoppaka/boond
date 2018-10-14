@@ -13,7 +13,7 @@ class User(AbstractUser):
         (6, 'Admin'),
     )
 
-    user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES)
+    user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES, default=6)
     name = models.CharField(max_length=50)
 
 
@@ -77,7 +77,7 @@ class BloodDonationEvent(models.Model):
     location = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
     # time = models.TimeField()
-    poster = models.FileField()
+    poster = models.ImageField()
     status = models.IntegerField(default=0)
 
     def __str__(self):
