@@ -172,9 +172,13 @@ class LocalBodySignUpForm(UserCreationForm):
 
 
 class EventForm(forms.ModelForm):
-
     date = forms.DateField(
         widget=forms.DateInput,
+        required=True
+    )
+
+    description = forms.CharField(
+        widget=forms.Textarea,
         required=True
     )
 

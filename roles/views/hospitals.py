@@ -1,7 +1,10 @@
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
+from django.utils.decorators import method_decorator
 from django.views import generic
 
+from ..decorators import hospital_required
 from ..forms import HospitalSignUpForm
 from ..models import User
 
@@ -21,5 +24,6 @@ class HospitalSignUpView(generic.CreateView):
         return redirect('hospital:hospital_home')
 
 
+@method_decorator([login_required, hospital_required], name='dispatch')
 class HospitalHomeView(generic.TemplateView):
     template_name = 'roles/hospitals/hospital_home.html'

@@ -1,7 +1,10 @@
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from django.utils.decorators import method_decorator
 from django.views import generic
 
+from ..decorators import local_body_required
 from ..forms import LocalBodySignUpForm, EventForm
 from ..models import User, BloodDonationEvent
 
@@ -23,6 +26,7 @@ class LocalBodySignUpView(generic.CreateView):
         return redirect('local_bodies:local_bodies_home')
 
 
+@method_decorator([login_required, local_body_required], name='dispatch')
 class LocalBodyHomeView(generic.TemplateView):
     template_name = 'roles/local_bodies/local_bodies_home.html'
 
@@ -32,6 +36,8 @@ def view_event(request):
     return render(request, 'roles/local_bodies/all_events.html', {'all_products': all_products})
 
 
+@login_required
+@local_body_required
 def upload_event(request):
     # if not request.user.is_authenticated:
     # return render(request, 'registration/signup_form.html')
