@@ -17,14 +17,12 @@ def send_event_message():
     )
 
 
-def send_confirmation_recipient_message(some_user_parameter):
-    # TODO Query
-    user = User.objects.get(some_user_parameter)
+def send_confirmation_recipient_message(user_email):
     send_mail(
-        subject='Blood Reservation Confirmation',
+        subject='Blood Blocking Confirmation',
         message='Blood has been reserved. Please collect it within 2 hours.',
         from_email=settings.EMAIL_HOST_USER,
-        recipient_list=user.email,
+        recipient_list=[user_email,],
     )
 
 

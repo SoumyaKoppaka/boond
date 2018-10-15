@@ -171,7 +171,7 @@ class LocalBodySignUpForm(UserCreationForm):
 class ReserveForm(forms.ModelForm):
     class Meta:
         model= Request
-        fields=['request_type','request_quantity','time']
+        fields=['user','request_type','request_quantity','time']
 
 class EventForm(forms.ModelForm):
     date = forms.DateField(
