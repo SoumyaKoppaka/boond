@@ -54,16 +54,21 @@ def search(request):
     return render(request,'roles/hospitals/search.html',context )
 
 def block_blood(request, slug):
-    if request.POST:
+
+    if request.method=="GET":
         #cart = get_user_cart(request)
         blocked_blood = Blood.objects.get(slug=slug)
         blocked_blood.status=1
+        print(blocked_blood)
+        blocked_blood.save()
+        
 
         #quantity = int(request.POST.get('qty')) or 1
 
     #return redirect(reverse('view_cart'))
     #return render(request,'roles/hospitals/search.html',{} )
         return render(request, 'roles/hospitals/detail.html', {'product': blocked_blood})
+    return render(request,'roles/hospitals/search.html',{} )
 
 
 
