@@ -4,16 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/roles/templates/roles/local_bodies/all.html" line="7" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71287bdb-19de-4f73-ad26-be394f2c8a06" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/roles/admin.py" afterPath="$PROJECT_DIR$/roles/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/roles/forms.py" afterPath="$PROJECT_DIR$/roles/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/roles/models.py" afterPath="$PROJECT_DIR$/roles/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/roles/templates/roles/local_bodies/upload_event.html" afterPath="$PROJECT_DIR$/roles/templates/roles/local_bodies/upload_event.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/roles/urls.py" afterPath="$PROJECT_DIR$/roles/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/roles/views/hospitals.py" afterPath="$PROJECT_DIR$/roles/views/hospitals.py" />
-    </list>
+    <list default="true" id="71287bdb-19de-4f73-ad26-be394f2c8a06" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -87,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hospitals.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="hospitals.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/roles/views/hospitals.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
-              <caret line="65" column="48" lean-forward="false" selection-start-line="65" selection-start-column="48" selection-end-line="65" selection-end-column="48" />
+            <state relative-caret-position="237">
+              <caret line="60" column="0" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -99,11 +90,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="detail.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="detail.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/roles/templates/roles/hospitals/detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="7" column="42" lean-forward="false" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
+            <state relative-caret-position="462">
+              <caret line="22" column="38" lean-forward="true" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -738,16 +729,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/roles/views/hospitals.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="65" column="48" lean-forward="false" selection-start-line="65" selection-start-column="48" selection-end-line="65" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/roles/templates/roles/hospitals/search.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="693">
@@ -768,9 +749,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/roles/templates/roles/hospitals/detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="7" column="42" lean-forward="false" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
+        <state relative-caret-position="462">
+          <caret line="22" column="38" lean-forward="true" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/roles/views/hospitals.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="60" column="0" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
