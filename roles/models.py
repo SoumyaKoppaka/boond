@@ -89,6 +89,7 @@ class BloodDonationEvent(models.Model):
 
 
 class Blood(models.Model):
+    user = models.ForeignKey(User, default=6, on_delete=models.CASCADE)
     blood_type = models.CharField(choices=BLOOD_TYPE_CHOICES, default='O+', max_length=20)
     quantity = models.IntegerField()
     reports = models.FileField()
@@ -99,6 +100,7 @@ class Blood(models.Model):
 
 
 class Request(models.Model):
+    user = models.ForeignKey(User, default=6, on_delete=models.CASCADE)
     time = models.TimeField(default=datetime.datetime.now())
     request_quantity = models.IntegerField()
     request_type = models.CharField(choices=BLOOD_TYPE_CHOICES, default='O+', max_length=20)
