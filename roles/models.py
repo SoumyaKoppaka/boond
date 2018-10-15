@@ -3,14 +3,15 @@ from django.db import models
 import datetime
 
 BLOOD_TYPE_CHOICES = (
-        ('A+', 'A+'),
-        ('B+', 'B+'),
-        ('O+', 'O+'),
-        ('A-', 'A-'),
-        ('B-', 'B-'),
-        ('O-', 'O-'),
-    )
-# Create your models here.
+    ('A+', 'A+'),
+    ('B+', 'B+'),
+    ('O+', 'O+'),
+    ('A-', 'A-'),
+    ('B-', 'B-'),
+    ('O-', 'O-'),
+)
+
+
 class User(AbstractUser):
     USER_TYPE_CHOICES = (
         (1, 'Donor'),
@@ -21,12 +22,14 @@ class User(AbstractUser):
         (6, 'Admin'),
     )
 
-    user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES, default=5)
+    user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES, default=6)
     name = models.CharField(max_length=50)
 
 
 class Donor(models.Model):
-    address = models.CharField(max_length=300)
+    first_name = models.CharField(max_length=40, default='')
+    last_name = models.CharField(max_length=40, default='')
+    location = models.CharField(max_length=40, default='')
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
     def __str__(self):
@@ -34,7 +37,9 @@ class Donor(models.Model):
 
 
 class Recipient(models.Model):
-    address = models.CharField(max_length=300)
+    first_name = models.CharField(max_length=40, default='')
+    last_name = models.CharField(max_length=40, default='')
+    location = models.CharField(max_length=40, default='')
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
     def __str__(self):
@@ -42,17 +47,17 @@ class Recipient(models.Model):
 
 
 class BloodBank(models.Model):
-    address = models.CharField(max_length=300)
+    name = models.CharField(max_length=40, default='')
+    location = models.CharField(max_length=40, default='')
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    name=models.CharField(max_length=20, default="Sion")
-
 
     def __str__(self):
         return self.user.username
 
 
 class Hospital(models.Model):
-    address = models.CharField(max_length=300)
+    name = models.CharField(max_length=40, default='')
+    location = models.CharField(max_length=40, default='')
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
     def __str__(self):
@@ -60,42 +65,46 @@ class Hospital(models.Model):
 
 
 class LocalBodies(models.Model):
-    address = models.CharField(max_length=300)
+    name = models.CharField(max_length=40, default='')
+    location = models.CharField(max_length=40, default='')
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
     def __str__(self):
         return self.user.username
 
+
 class BloodDonationEvent(models.Model):
     user = models.ForeignKey(User, default=5, on_delete=models.CASCADE)
     name = models.CharField(max_length=250)
     organizer = models.CharField(max_length=50)
-    date=models.DateTimeField()
-    location=models.CharField(max_length=100)
+    date = models.DateTimeField()
+    location = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
-    #time=models.TimeField()
+    # time=models.TimeField()
     poster = models.FileField()
-    status=models.IntegerField(default=0)
-
+    status = models.IntegerField(default=0)
 
     def __str__(self):
         return self.organizer + ' - ' + self.location
 
+
 class Blood(models.Model):
-
-
-    blood_type = models.CharField(choices=BLOOD_TYPE_CHOICES, default='O+',max_length=20)
-    quantity=models.IntegerField()
-    reports=models.FileField()
-    anomaly=models.CharField(max_length=50)
-    blood_bank= models.ManyToManyField(BloodBank, default=1)
-    status=models.IntegerField(default=0)
+    blood_type = models.CharField(choices=BLOOD_TYPE_CHOICES, default='O+', max_length=20)
+    quantity = models.IntegerField()
+    reports = models.FileField()
+    anomaly = models.CharField(max_length=50)
+    blood_bank = models.ManyToManyField(BloodBank, default=1)
+    status = models.IntegerField(default=0)
     slug = models.SlugField(unique=True, default=1)
 
 
 class Request(models.Model):
-    time=models.TimeField(default=datetime.datetime.now())
-    request_quantity=models.IntegerField()
-    request_type=models.CharField(choices=BLOOD_TYPE_CHOICES, default='O+',max_length=20)
-
-
+    time = models.TimeField(default=datetime.datetime.now())
+    request_quantity = models.IntegerField()
+    request_type = models.CharField(choices=BLOOD_TYPE_CHOICES, default='O+', max_length=20)
+    date = models.DateTimeField()
+    location = models.CharField(max_length=100)
+    description = models.CharField(max_length=500)
+    # time = models.TimeField()
+    poster = models.ImageField()
+    status = models.IntegerField(default=0)

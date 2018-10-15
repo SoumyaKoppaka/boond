@@ -1,17 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-      <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
-
-</body>
-</html>
+{% block content %}
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+        <br/><br/><br/>
+        <div class="box" style="height: 300px">
+            <h2 class="text-center">Log in<br></h2>
+      <form class="form-signin text-center" method="post" novalidate>
+        {% csrf_token %}
+          {% for field in form %}
+              {% for error in field.errors %}
+                  <p class="text-danger">{{ error }}</p>
+                  <br>
+              {% endfor %}
+              {{ field.label_tag }}<br>
+              {{ field }}
+              <br>
+          {% endfor %}
+      <br>
+        <button type="submit" class="btn btn-success">Log In</button>
+      </form>
+        </div>
+    </div>
+  </div>
+{% endblock %}

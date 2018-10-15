@@ -1,9 +1,12 @@
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from django.utils.decorators import method_decorator
 from django.views import generic
 
+from ..decorators import hospital_required
 from ..forms import HospitalSignUpForm, ReserveForm
-from ..models import User, Request, Blood,BloodBank
+from ..models import User, Blood, Request
 
 
 class HospitalSignUpView(generic.CreateView):
@@ -12,7 +15,7 @@ class HospitalSignUpView(generic.CreateView):
     template_name = 'registration/signup_form.html'
 
     def get_context_data(self, **kwargs):
-        kwargs['user_type'] = 'hospital'
+        kwargs['user_type'] = 4
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
@@ -20,9 +23,6 @@ class HospitalSignUpView(generic.CreateView):
         login(self.request, user)
         return redirect('hospital:hospital_home')
 
-
-class HospitalHomeView(generic.TemplateView):
-    template_name = 'roles/hospitals/hospital_home.html'
 
 def reserve_blood(request):
     # if not request.user.is_authenticated:
@@ -72,3 +72,6 @@ def block_blood(request, slug):
 
 
 
+@method_decorator([login_required, hospital_required], name='dispatch')
+class HospitalHomeView(generic.TemplateView):
+    template_name = 'roles/hospitals/hospital_home.html'
