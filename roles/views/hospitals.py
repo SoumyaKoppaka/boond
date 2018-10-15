@@ -8,10 +8,6 @@ from ..decorators import hospital_required
 from ..forms import HospitalSignUpForm, ReserveForm
 from ..models import User, Blood, Request
 from ..utils import send_confirmation_recipient_message
-import time
-import sched
-
-
 
 
 class HospitalSignUpView(generic.CreateView):
@@ -29,6 +25,7 @@ class HospitalSignUpView(generic.CreateView):
         return redirect('hospital:hospital_home')
 
 
+@hospital_required
 def reserve_blood(request):
     # if not request.user.is_authenticated:
     # return render(request, 'registration/signup_form.html')
@@ -38,64 +35,71 @@ def reserve_blood(request):
         event = form.save(commit=True)
         event.user = request.user
 
-       # return render(request, 'roles/local_bodies/local_bodies_home.html', {'event': event})
+    # return render(request, 'roles/loLocal Bodies:cal_bodies/local_bodies_home.html', {'event': event})
     context = {
         "form": form,
-
 
     }
     return render(request, 'roles/hospitals/reserve_blood.html', context)
 
+
+@hospital_required
 def search(request):
-    #search_query = request.GET.get('name')
-    a=Request.objects.latest('time')
+    # search_query = request.GET.get('name')
+    a = Request.objects.latest('time')
 
-    search_query =a.request_type
-    results = Blood.objects.filter(blood_type__icontains=search_query)
-    context={
-        'search_query':search_query,
-        'results':results
+    search_query = a.request_type
+    try:
+        results = Blood.objects.filter(blood_type__icontains=search_query)
+    except Blood.DoesNotExist:
+        results = None
+    context = {
+        'search_query': search_query,
+        'results': results
     }
-    return render(request,'roles/hospitals/search.html',context )
+    return render(request, 'roles/hospitals/search.html', context)
 
+
+@hospital_required
 def block_blood(request, slug):
-
-    if request.method=="GET":
+    if request.method == "GET":
         blocked_blood = Blood.objects.get(slug=slug)
-        blocked_blood.status=1
+        blocked_blood.status = 1
         print(blocked_blood)
         blocked_blood.save()
-        send_confirmation_recipient_message(blocked_blood.user.email)
+        send_confirmation_recipient_message(blocked_blood)
 
+        # quantity = int(request.POST.get('qty')) or 1
 
-
-        #quantity = int(request.POST.get('qty')) or 1
-
-    #return redirect(reverse('view_cart'))
-    #return render(request,'roles/hospitals/search.html',{} )
+        # return redirect(reversetime('view_cart'))
+        # return render(request,'roles/hospitals/search.html',{} )
         return render(request, 'roles/hospitals/detail.html', {'product': blocked_blood})
-    return render(request,'roles/hospitals/search.html',{} )
-
+    return render(request, 'roles/hospitals/search.html', {})
 
 
 @method_decorator([login_required, hospital_required], name='dispatch')
 class HospitalHomeView(generic.TemplateView):
     template_name = 'roles/hospitals/hospital_home.html'
 
+
+@hospital_required
 def send_email_reserve_conf(request, slug):
-
-    if request.method=="GET":
-        #cart = get_user_cart(request)
+    if request.method == "GET":
+        # cart = get_user_cart(request)
         blocked_blood = Blood.objects.get(blood_type=slug)
+        send_confirmation_recipient_message(blocked_blood)
 
+
+@hospital_required
 def send_email_request(request, slug):
-
-    if request.method=="GET":
-        #cart = get_user_cart(request)
+    if request.method == "GET":
+        # cart = get_user_cart(request)
         blocked_blood = Blood.objects.get(blood_type=slug)
         print(blocked_blood)
+        send_confirmation_recipient_message(blocked_blood)
 
-    #Send email to donors of the particular blood type
+    # Send email to donors of the particular blood type
+
 
 '''
 def run_continuously(self, interval=1):
