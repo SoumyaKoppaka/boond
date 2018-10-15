@@ -39,3 +39,15 @@ def send_update_reminder():
         from_email='Boond',
         recipient_list=recipients
     )
+
+
+def send_request_donor_message(recipient):
+    recipients = []
+    for user in recipient.user:
+        if user.user_type == 1:
+            recipients.append(user.email)
+    send_mail(
+        subject='Blood Donation Request',
+        message='Please donate blood',
+        recipient_list=recipients
+    )

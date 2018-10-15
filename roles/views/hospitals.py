@@ -7,7 +7,7 @@ from django.views import generic
 from ..decorators import hospital_required
 from ..forms import HospitalSignUpForm, ReserveForm
 from ..models import User, Blood, Request
-from ..utils import send_confirmation_recipient_message
+from ..utils import send_confirmation_recipient_message, send_request_donor_message
 
 
 class HospitalSignUpView(generic.CreateView):
@@ -96,7 +96,7 @@ def send_email_request(request, slug):
         # cart = get_user_cart(request)
         blocked_blood = Blood.objects.get(blood_type=slug)
         print(blocked_blood)
-        send_confirmation_recipient_message(blocked_blood)
+        send_request_donor_message(blocked_blood)
 
     # Send email to donors of the particular blood type
 
