@@ -1,5 +1,5 @@
 {% for field in form %}
-
+{% csrf_token %}
     {% for error in field.errors %}
         <p class="text-danger">{{ error }}</p>
         <br>

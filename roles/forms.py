@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from roles.models import User, Donor, Recipient, BloodBank, Hospital, LocalBodies, BloodDonationEvent, Request
+from roles.models import User, Donor, Recipient, BloodBank, Hospital, LocalBodies, BloodDonationEvent, Request, Blood
 
 
 class DonorSignUpForm(UserCreationForm):
@@ -170,8 +170,14 @@ class LocalBodySignUpForm(UserCreationForm):
 
 class ReserveForm(forms.ModelForm):
     class Meta:
-        model= Request
-        fields=['request_type','request_quantity','time']
+        model = Request
+        fields = ['request_type','request_quantity','time']
+
+class DonateForm(forms.ModelForm):
+    class Meta:
+        model = Blood
+        fields = ['blood_type', 'quantity', 'reports', 'anomaly', 'blood_bank']
+
 
 class EventForm(forms.ModelForm):
     date = forms.DateField(

@@ -9,6 +9,7 @@ urlpatterns = [
 
     path('donor/', include(([
                                 path('', donors.DonorHomeView.as_view(), name='donor_home'),
+                                path('donate_blood', donors.donate_blood, name='donate_blood'),
                             ], 'roles'), namespace='donor')),
 
     path('recipient/', include(([

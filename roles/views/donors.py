@@ -1,11 +1,12 @@
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
+from django.shortcuts import redirect, HttpResponse, render
 from django.utils.decorators import method_decorator
 from django.views import generic
 
-from ..decorators import donor_required
-from ..forms import DonorSignUpForm
+from roles.views.local_bodies import IMAGE_FILE_TYPES
+from ..decorators import donor_required, local_body_required
+from ..forms import DonorSignUpForm, DonateForm
 from ..models import User
 
 
@@ -27,3 +28,17 @@ class DonorSignUpView(generic.CreateView):
 @method_decorator([login_required, donor_required], name='dispatch')
 class DonorHomeView(generic.TemplateView):
     template_name = 'roles/donors/donor_home.html'
+
+def donate_blood(request):
+        form = DonateForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            event = form.save(commit=False)
+            event.user = request.user
+            event.save()
+            return render(request, 'roles/donors/donor_home.html')
+        context = {
+            "form": form,
+        }
+        return render(request, 'roles/donors/donate_blood.html', context)
+
+
