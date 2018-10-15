@@ -75,3 +75,20 @@ def block_blood(request, slug):
 @method_decorator([login_required, hospital_required], name='dispatch')
 class HospitalHomeView(generic.TemplateView):
     template_name = 'roles/hospitals/hospital_home.html'
+
+def send_email_reserve_conf(request, slug):
+
+    if request.method=="GET":
+        #cart = get_user_cart(request)
+        blocked_blood = Blood.objects.get(blood_type=slug)
+
+def send_email_request(request, slug):
+
+    if request.method=="GET":
+        #cart = get_user_cart(request)
+        blocked_blood = Blood.objects.get(blood_type=slug)
+        print(blocked_blood)
+
+    #Send email to donors of the particular blood type
+
+
