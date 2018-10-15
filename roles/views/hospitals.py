@@ -61,7 +61,7 @@ def block_blood(request, slug):
         blocked_blood.status=1
         print(blocked_blood)
         blocked_blood.save()
-        
+
 
         #quantity = int(request.POST.get('qty')) or 1
 
