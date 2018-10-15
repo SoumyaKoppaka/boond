@@ -28,6 +28,7 @@ urlpatterns = [
                                        name='hospital_block_blood'),
                                     url(r'^sendEmailRequest/(?P<slug>[^\/]+)$', hospitals.send_email_request,
                                        name='hospital_send_email_request'),
+
                                ], 'roles'), namespace='hospital')),
 
     path('localBodies/', include(([

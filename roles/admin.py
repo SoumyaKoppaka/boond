@@ -3,7 +3,6 @@ from django.contrib import admin
 from .models import BloodDonationEvent,User,Donor,Recipient,Hospital,BloodBank,LocalBodies, Request, Blood
 
 # Register your models here.
-admin.site.register(BloodDonationEvent)
 admin.site.register(User)
 admin.site.register(Donor)
 admin.site.register(Recipient)
