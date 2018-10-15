@@ -1,0 +1,76 @@
+
+{% load staticfiles %}
+
+
+{% block body %}
+
+<h2 style="color:blue">Searched for: "{{ search_query }}"</h2>
+<h2 >Results:</h2>
+    <!--<ul>
+    {% for product in results %}
+            <li>
+                <div class="col-sm-6 col-md-4">
+
+                <div class="thumbnail">
+                    <!--<img class="img-responsive" src="{% static '/images/bloodbank.jpg' %}"
+                         alt="...">-->
+
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Blood Group</th>
+      <th scope="col">Amount(ml)</th>
+      <th scope="col">Anomaly</th>
+        <th scope="col">Blood Bank</th>
+              <th scope="col">Report</th>
+
+
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for product in results %}
+    <tr>
+      <th scope="row">1</th>
+      <td>{{ product.blood_type }}</td>
+      <td>{{ product.quantity }}</td>
+      <td>{{ product.anomaly }}</td>
+        <td>{{ product.blood_bank.name }}</td>
+        <td>{{ product.reports }}</td>
+        <td><a href="{% url 'hospital:hospital_block_blood' product.slug %}" class="btn btn-primary" role="button">Block</a> </td>
+    </tr>
+
+      </tbody>
+    {% endfor %}
+</table>
+
+
+                    <!--<div class="caption">
+                        <h3>
+                            <a href="{{ product.get_absolute_url }}">{{ product.blood_type }}</a>
+
+                        </h3>
+
+                        <p>Quantity: {{ product.quantity }}</p>
+                        <p>Anomaly: {{ product.anomaly }}</p>
+                        <p>Blood Bank: {{ product.blood_bank.name }}</p>
+                        <p>Reports: {{ product.reports }}</p>
+                        <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Reserve</button>
+                            </div>
+
+
+
+
+
+                    </div>-->
+                <!--</div>
+            </div>
+            </li>-->
+    {% endfor %}
+    <!--</ul>
+    </header>-->
+
+{% endblock %}

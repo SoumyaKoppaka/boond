@@ -1,7 +1,15 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+import datetime
 
-
+BLOOD_TYPE_CHOICES = (
+        ('A+', 'A+'),
+        ('B+', 'B+'),
+        ('O+', 'O+'),
+        ('A-', 'A-'),
+        ('B-', 'B-'),
+        ('O-', 'O-'),
+    )
 # Create your models here.
 class User(AbstractUser):
     USER_TYPE_CHOICES = (
@@ -36,6 +44,8 @@ class Recipient(models.Model):
 class BloodBank(models.Model):
     address = models.CharField(max_length=300)
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    name=models.CharField(max_length=20, default="Sion")
+
 
     def __str__(self):
         return self.user.username
@@ -70,3 +80,22 @@ class BloodDonationEvent(models.Model):
 
     def __str__(self):
         return self.organizer + ' - ' + self.location
+
+class Blood(models.Model):
+
+
+    blood_type = models.CharField(choices=BLOOD_TYPE_CHOICES, default='O+',max_length=20)
+    quantity=models.IntegerField()
+    reports=models.FileField()
+    anomaly=models.CharField(max_length=50)
+    blood_bank= models.ManyToManyField(BloodBank, default=1)
+    status=models.IntegerField(default=0)
+    slug = models.SlugField(unique=True, default=1)
+
+
+class Request(models.Model):
+    time=models.TimeField(default=datetime.datetime.now())
+    request_quantity=models.IntegerField()
+    request_type=models.CharField(choices=BLOOD_TYPE_CHOICES, default='O+',max_length=20)
+
+

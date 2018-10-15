@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 
-from roles.models import User, Donor, Recipient, BloodBank, Hospital, LocalBodies, BloodDonationEvent
+from roles.models import User, Donor, Recipient, BloodBank, Hospital, LocalBodies, BloodDonationEvent, Request, Blood
 
 
 class DonorSignUpForm(UserCreationForm):
@@ -80,4 +80,11 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = BloodDonationEvent
         fields = ['name', 'organizer', 'location', 'date', 'description','poster']
+
+class ReserveForm(forms.ModelForm):
+    class Meta:
+        model= Request
+        fields=['request_type','request_quantity','time']
+
+
 
